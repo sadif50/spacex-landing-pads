@@ -1,2 +1,21 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+  import DataTable from '$lib/components/dataTable/DataTable.svelte';
+import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
+
+	let { data } = $props();
+  const landpads = writable(data.landpads);
+  $effect.pre(()=>{
+    landpads.set(data.landpads);
+  })
+  setContext('landpads', landpads);
+</script>
+
+<div class="flex gap-[40px] mx-10 my-[50px]">
+  <div class="w-8/12">
+    <DataTable />
+  </div>
+  <div class="w-4/12">
+    map and chart here
+  </div>
+</div>
