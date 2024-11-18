@@ -1,34 +1,34 @@
 <script>
 	import { getContext } from 'svelte';
-  import { Button, Progressbar, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
+  import { Badge, Button, Progressbar, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
   import {LinkOutline} from 'flowbite-svelte-icons'
 
 	const landpads = getContext('landpads');
 </script>
 
-<Table hoverable={true}>
+<Table hoverable={true} shadow>
   <TableHead>
-    <TableHeadCell>FULL NAME</TableHeadCell>
-    <TableHeadCell>LOCATION NAME</TableHeadCell>
-    <TableHeadCell>REGION</TableHeadCell>
-    <TableHeadCell>DETAILS</TableHeadCell>
-    <TableHeadCell>SUCCESS RATE</TableHeadCell>
-    <TableHeadCell>WIKIPEDIA LINK</TableHeadCell>
-    <TableHeadCell>STATUS</TableHeadCell>
+    <TableHeadCell padding="p-4">FULL NAME</TableHeadCell>
+    <TableHeadCell padding="p-4">LOCATION NAME</TableHeadCell>
+    <TableHeadCell padding="p-4">REGION</TableHeadCell>
+    <TableHeadCell padding="p-4">DETAILS</TableHeadCell>
+    <TableHeadCell padding="p-4">SUCCESS RATE</TableHeadCell>
+    <TableHeadCell padding="p-4">WIKIPEDIA LINK</TableHeadCell>
+    <TableHeadCell padding="p-4">STATUS</TableHeadCell>
   </TableHead>
   <TableBody tableBodyClass="divide-y">
     {#each $landpads as landpad, index}
       <TableBodyRow>
-        <TableBodyCell>{landpad.full_name}</TableBodyCell>
-        <TableBodyCell>{landpad.location.name}</TableBodyCell>
-        <TableBodyCell>{landpad.location.region}</TableBodyCell>
-        <TableBodyCell><Button>See Details</Button></TableBodyCell>
-        <TableBodyCell>
-          <Progressbar progress={(landpad.successful_landings / landpad.attempted_landings) * 100} color="green" />
-          {parseInt((landpad.successful_landings / landpad.attempted_landings) * 100)}
+        <TableBodyCell tdClass="p-4">{landpad.full_name}</TableBodyCell>
+        <TableBodyCell tdClass="p-4">{landpad.location.name}</TableBodyCell>
+        <TableBodyCell tdClass="p-4">{landpad.location.region}</TableBodyCell>
+        <TableBodyCell tdClass="p-4"><Button size="xs" color="light">View Details</Button></TableBodyCell>
+        <TableBodyCell tdClass="p-4">
+          <Progressbar progress={Math.round((landpad.successful_landings / landpad.attempted_landings) * 100)} progressClass="bg-[#31C48D]" />
+          {!isNaN((landpad.successful_landings / landpad.attempted_landings) * 100) ? Math.round((landpad.successful_landings / landpad.attempted_landings) * 100) + "%" : "NA"}
         </TableBodyCell>
-        <TableBodyCell><a href={landpad.wikipedia}><LinkOutline /></a></TableBodyCell>
-        <TableBodyCell>{landpad.status}</TableBodyCell>
+        <TableBodyCell tdClass="p-4"><a href={landpad.wikipedia} target="_blank"><LinkOutline color="#1C64F2" /></a></TableBodyCell>
+        <TableBodyCell tdClass="p-4"><Badge color={(landpad.status == 'active') ? 'green' : (landpad.status === 'retired') ? 'red' : 'indigo'}>{landpad.status}</Badge></TableBodyCell>
       </TableBodyRow>
     {/each}
   </TableBody>
