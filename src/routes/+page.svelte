@@ -1,5 +1,5 @@
 <script>
-  import DataTable from '$lib/components/dataTable/DataTable.svelte';
+  import DataViewController from '$lib/components/dataTable/DataViewController.svelte';
   import MapView from '$lib/components/mapView/MapView.svelte';
   import SuccessRateChart from '$lib/components/successRateChart/SuccessRateChart.svelte';
   import { setContext } from 'svelte';
@@ -15,7 +15,7 @@
 
 <div class="flex gap-[40px] mx-10 my-[50px]">
   <div class="w-8/12">
-    <DataTable />
+    <DataViewController/>
   </div>
   <div class="w-4/12">
     <MapView />
