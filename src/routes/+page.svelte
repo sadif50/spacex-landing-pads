@@ -1,5 +1,6 @@
 <script>
   import DataTable from '$lib/components/dataTable/DataTable.svelte';
+  import MapView from '$lib/components/mapView/MapView.svelte';
 import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
@@ -16,6 +17,6 @@ import { setContext } from 'svelte';
     <DataTable />
   </div>
   <div class="w-4/12">
-    map and chart here
+    <MapView />
   </div>
 </div>

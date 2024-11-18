@@ -4,7 +4,6 @@
   import {LinkOutline} from 'flowbite-svelte-icons'
 
 	const landpads = getContext('landpads');
-  console.log($landpads);
 </script>
 
 <Table hoverable={true}>
