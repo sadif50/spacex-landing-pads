@@ -52,7 +52,7 @@
   })
 </script>
 
-<div class="rounded-lg drop-shadow bg-white">
+<div class="rounded-lg drop-shadow bg-white mb-[26px]">
   <h2 class="px-4 py-[15px] font-semibold">
     Map View
   </h2>

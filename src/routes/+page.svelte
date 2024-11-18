@@ -1,7 +1,8 @@
 <script>
   import DataTable from '$lib/components/dataTable/DataTable.svelte';
   import MapView from '$lib/components/mapView/MapView.svelte';
-import { setContext } from 'svelte';
+  import SuccessRateChart from '$lib/components/successRateChart/SuccessRateChart.svelte';
+  import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
 	let { data } = $props();
@@ -18,5 +19,6 @@ import { setContext } from 'svelte';
   </div>
   <div class="w-4/12">
     <MapView />
+    <SuccessRateChart />
   </div>
 </div>
