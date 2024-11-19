@@ -1,6 +1,7 @@
 <script>
   import DataFilter from "./DataFilter.svelte";
   import DataTable from "./DataTable.svelte";
+  import GridDataView from "./GridDataView.svelte";
   import TableViewButton from "./TableViewButton.svelte";
 
   let tableType = $state('table');
@@ -17,6 +18,6 @@
   {#if tableType === 'table'}
     <DataTable />
   {:else}
-    <h1>Grid Table here</h1>
+    <GridDataView />
   {/if}
 </div>
