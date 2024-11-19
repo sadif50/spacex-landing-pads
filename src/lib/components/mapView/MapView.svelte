@@ -9,13 +9,14 @@
   import VectorSource from 'ol/source/Vector';
   import Point from 'ol/geom/Point';
   import { Style, Circle, Fill, Stroke } from 'ol/style';
+  import { derived } from 'svelte/store';
 
 	const landpads = getContext('landpads');
   let map;
-  onMount(()=>{
-    const vectorSource = new VectorSource();
-
-    $landpads.forEach(landpad => {
+  let vectorSource = new VectorSource();
+  const updateLandpads = (landpads) => {
+    vectorSource.clear();
+    landpads.forEach(landpad => {
       const {latitude, longitude} = landpad.location;
 
       const pointFeature = new Feature({
@@ -32,6 +33,8 @@
       }))
       vectorSource.addFeature(pointFeature);
     });
+  }
+  onMount(()=>{
     const vectorLayer = new VectorLayer({
       source: vectorSource
     });
@@ -49,6 +52,10 @@
         zoom: 3
       })
     });
+    updateLandpads($landpads);
+  })
+  $effect(()=>{
+    updateLandpads($landpads);
   })
 </script>
 
