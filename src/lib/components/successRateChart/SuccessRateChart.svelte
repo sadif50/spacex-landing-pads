@@ -3,13 +3,15 @@
   import { getContext } from 'svelte';
 
   const landpads = getContext('landpads');
-  const successRate = $landpads.map(landpad => {
+  
+  const successRate = $derived($landpads.map(landpad => {
     if(!isNaN((landpad.successful_landings / landpad.attempted_landings) * 100)){
       return Math.round((landpad.successful_landings / landpad.attempted_landings) * 100);
     }else return 0;
-  })
-  const labels = $landpads.map(landpad => landpad.full_name);
-  const options = {
+  }))
+  const labels = $derived($landpads.map(landpad => landpad.full_name));
+
+  const options = $derived({
     series: [...successRate],
     colors: ['#1C64F2', '#16BDCA', '#FDBA8C', '#E74694'],
     chart: {
@@ -67,7 +69,7 @@
         }
       }
     },
-  };
+  });
 </script>
 
 <div class="rounded-lg drop-shadow bg-white">
