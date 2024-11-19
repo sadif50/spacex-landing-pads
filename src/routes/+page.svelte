@@ -14,11 +14,11 @@
   setContext('landpads', landpads);
 </script>
 
-<div class="flex gap-[40px] mx-10 my-[50px]">
-  <div class="w-8/12">
+<div class="lg:flex lg:gap-[40px] sm:mx-10 mx-4 sm:my-[50px] my-6">
+  <div class="xl:w-8/12 lg:w-3/5 w-full mb-[26px]">
     <DataViewController/>
   </div>
-  <div class="w-4/12">
+  <div class="xl:w-4/12 lg:w-2/5 w-full">
     <MapView />
     <SuccessRateChart />
   </div>

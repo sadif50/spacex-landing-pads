@@ -5,7 +5,7 @@
 	const landpads = getContext('landpads');
 </script>
 
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
     {#each $landpads as landpad, index}
       <GridDataViewItem {landpad} />
     {/each}
