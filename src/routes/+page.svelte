@@ -6,6 +6,7 @@
 	import { writable } from 'svelte/store';
 
 	let { data } = $props();
+  setContext('allLandpads', data.landpads);
   const landpads = writable(data.landpads);
   $effect.pre(()=>{
     landpads.set(data.landpads);
