@@ -1,7 +1,8 @@
 <script>
-    import { Badge, Button, ButtonGroup, Progressbar } from 'flowbite-svelte';
-    import { LinkOutline, MapPinAltOutline } from 'flowbite-svelte-icons';
+  import { Badge, Button, ButtonGroup, Modal, Progressbar } from 'flowbite-svelte';
+  import { LinkOutline, MapPinAltOutline } from 'flowbite-svelte-icons';
   const { landpad } = $props();
+  let open = $state(false);
 </script>
 
 <div class="p-8 bg-white drop-shadow rounded-md">
@@ -20,8 +21,12 @@
 
   <div class="flex justify-center">
     <ButtonGroup>
-      <Button size="xs" color="light">View Details</Button>
+      <Button size="xs" color="light" onclick={()=>open = !open}>View Details</Button>
       <Button size="xs" color="light" target="_blank" href={landpad.wikipedia}><LinkOutline color="#1C64F2"/>&nbsp;wikipedia</Button>
     </ButtonGroup>
   </div>
 </div>
+
+<Modal title={`Details - ${landpad.full_name}`} bind:open={open} autoclose>
+  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">{landpad.details}</p>
+</Modal>
