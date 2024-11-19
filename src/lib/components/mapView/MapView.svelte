@@ -24,13 +24,33 @@
         name: landpad.location.name
       });
 
-      pointFeature.setStyle(new Style({
-        image: new Circle({
-          radius: 6,
-          fill: new Fill({ color: '#91F652' }),
-          stroke: new Stroke({ color: '#91F652', width: 2 })
-        }),
-      }))
+      if(landpad.status === 'active'){
+        pointFeature.setStyle(new Style({
+          image: new Circle({
+            radius: 4,
+            fill: new Fill({ color: '#31C48D' }),
+            stroke: new Stroke({ color: '#31C48D', width: 2 })
+          }),
+        }))
+      }else{
+        if(landpad.status === 'retired'){
+          pointFeature.setStyle(new Style({
+            image: new Circle({
+              radius: 4,
+              fill: new Fill({ color: '#9b1c1c' }),
+              stroke: new Stroke({ color: '#9b1c1c', width: 2 })
+            }),
+          }))
+        }else {
+          pointFeature.setStyle(new Style({
+            image: new Circle({
+              radius: 4,
+              fill: new Fill({ color: '#42389d' }),
+              stroke: new Stroke({ color: '#42389d', width: 2 })
+            }),
+          }))
+        }
+      }
       vectorSource.addFeature(pointFeature);
     });
   }
@@ -48,7 +68,7 @@
         vectorLayer
       ],
       view: new View({
-        center: fromLonLat([-80.544444, 28.485833]),
+        center: fromLonLat([$landpads[0]?.location?.longitude, $landpads[0]?.location?.latitude]),
         zoom: 3
       })
     });
